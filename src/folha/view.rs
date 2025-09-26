@@ -93,7 +93,7 @@ pub async fn list_folha(
         }
         Err(err) => {
             debug!("Erro ao buscar linhas: {}", err);
-            Redirect::to(&"/").into_response()
+            Redirect::to(&"/cadastro/folha").into_response()
         }
     }
 }

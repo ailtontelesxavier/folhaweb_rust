@@ -62,7 +62,7 @@ where
     type UpdateInput: DeserializeOwned + Send + Sync;
 
     fn table_name(&self) -> &str;
-    fn searchable_fields(&self) -> &[&str];
+    fn searchable_fields(&self) -> &[(&str, &str)];
     fn select_clause(&self) -> &str;
     fn from_clause(&self) -> &str;
     fn id_column(&self) -> &str {
@@ -103,11 +103,20 @@ where
             let search_fields = self.searchable_fields();
             if !search_fields.is_empty() {
                 let mut field_parts = Vec::new();
-                for field in search_fields {
-                    field_parts.push(format!("{} ILIKE $1", field));
+                let mut params = Vec::new();
+
+                for (field, op) in search_fields {
+                    field_parts.push(format!("{} {} $1", field, op));
+
+                    if *op == "ILIKE" {
+                        params.push(format!("%{}%", term));
+                    } else {
+                        params.push(term.to_string());
+                    }
                 }
+
                 let where_str = format!("WHERE ({})", field_parts.join(" OR "));
-                (where_str, vec![format!("%{}%", term)])
+                (where_str, params)
             } else {
                 (String::new(), vec![])
             }
@@ -189,12 +198,16 @@ where
 
     async fn delete(&self, pool: &PgPool, id: ID) -> Result<()>;
 
+    /* 
+    
+    */
     async fn get_paginated_view(
         &self,
         pool: &PgPool,
         find: Option<&str>,
         page: i32,
         page_size: i32,
+        searchable_fields_and: Option<&[(&str, &str)]>
     ) -> Result<PaginatedResponse<T>>
     where
         T: for<'r> sqlx::FromRow<'r, sqlx::postgres::PgRow> + Send + Unpin,
@@ -206,16 +219,36 @@ where
         // Construir WHERE clause com parâmetros seguros
         let (where_clause, params) = if let Some(term) = find {
             let search_fields = self.searchable_fields();
-            if !search_fields.is_empty() {
-                let mut field_parts = Vec::new();
-                for field in search_fields {
-                    field_parts.push(format!("{} ILIKE $1", field));
+            let mut field_parts = Vec::new();
+            let mut params = Vec::new();
+            for (i, (field, op)) in search_fields.iter().enumerate() {
+                let placeholder = format!("${}", params.len() + 1);
+                field_parts.push(format!("{} {} {}", field, op, placeholder));
+
+                if *op == "ILIKE" {
+                    params.push(format!("%{}%", term));
+                } else {
+                    params.push(term.to_string());
                 }
-                let where_str = format!("WHERE ({})", field_parts.join(" OR "));
-                (where_str, vec![format!("%{}%", term)])
-            } else {
-                (String::new(), vec![])
             }
+
+            // --- AND fields ---
+            if let Some(and_fields) = searchable_fields_and {
+                for (field, op) in and_fields {
+                    let placeholder = format!("${}", params.len() + 1);
+                    field_parts.push(format!("{} {} {}", field, op, placeholder));
+
+                    if *op == "ILIKE" {
+                        params.push(format!("%{}%", term));
+                    } else {
+                        params.push(term.to_string());
+                    }
+                }
+            }
+
+            // Junta OR e AND corretamente
+            let where_str = format!("WHERE ({})", field_parts.join(" AND "));
+            (where_str, params)
         } else {
             (String::new(), vec![])
         };

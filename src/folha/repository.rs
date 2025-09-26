@@ -33,8 +33,12 @@ impl Repository<Folha, i64> for FolhaRepository {
         "f.ano DESC, f.mes ASC"
     }
 
-    fn searchable_fields(&self) -> &[&str] {
-        &["f.ano", "f.mes"]
+    fn searchable_fields(&self) -> &[(&str, &str)] {
+        &[
+            ("f.ano", "="),
+            ("f.mes", "="),
+            ("serv.nome", "ILIKE"),
+        ]
     }
 
     fn select_clause(&self) -> &str {
