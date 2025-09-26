@@ -1,0 +1,485 @@
+nohup: ignoring input
+warning: unused import: `serde::de`
+ --> src/filters/datetime.rs:3:5
+  |
+3 | use serde::de;
+  |     ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `tracing::debug`
+ --> src/filters/datetime.rs:4:5
+  |
+4 | use tracing::debug;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `axum::Json`
+ --> src/folha/service.rs:4:5
+  |
+4 | use axum::Json;
+  |     ^^^^^^^^^^
+
+warning: unused import: `uuid::Uuid`
+ --> src/folha/repository.rs:7:5
+  |
+7 | use uuid::Uuid;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/folha/view.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::str::FromStr`
+ --> src/folha/view.rs:2:5
+  |
+2 | use std::str::FromStr;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `anyhow::Result`
+ --> src/folha/view.rs:6:5
+  |
+6 | use anyhow::Result;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `axum::Json`
+ --> src/folha/view.rs:7:5
+  |
+7 | use axum::Json;
+  |     ^^^^^^^^^^
+
+warning: unused imports: `Extension`, `Form`, `Multipart`, `Path`, and `Response`
+  --> src/folha/view.rs:9:5
+   |
+9  |     Extension, Form,
+   |     ^^^^^^^^^  ^^^^
+10 |     extract::{Multipart, Path, Query, State},
+   |               ^^^^^^^^^  ^^^^
+11 |     http::StatusCode,
+12 |     response::{Html, IntoResponse, Redirect, Response},
+   |                                              ^^^^^^^^
+
+warning: unused import: `bigdecimal::BigDecimal`
+  --> src/folha/view.rs:14:5
+   |
+14 | use bigdecimal::BigDecimal;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `minijinja::context`
+  --> src/folha/view.rs:15:5
+   |
+15 | use minijinja::context;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `serde_json::Value`
+  --> src/folha/view.rs:17:5
+   |
+17 | use serde_json::Value;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `delete` and `post`
+ --> src/folha/router.rs:3:15
+  |
+3 |     routing::{delete, get, post},
+  |               ^^^^^^       ^^^^
+
+warning: unused imports: `collections::HashMap` and `env`
+ --> src/main.rs:8:11
+  |
+8 | use std::{collections::HashMap, env, sync::Arc};
+  |           ^^^^^^^^^^^^^^^^^^^^  ^^^
+
+warning: unused imports: `ACCEPT`, `AUTHORIZATION`, `CONTENT_TYPE`, `Form`, `HeaderValue`, `Method`, `Query`, `Response`, `SET_COOKIE`, and `body::Body`
+  --> src/main.rs:11:5
+   |
+11 |     Form, Router,
+   |     ^^^^
+12 |     body::Body,
+   |     ^^^^^^^^^^
+13 |     extract::{Query, State},
+   |               ^^^^^
+14 |     http::{
+15 |         HeaderValue, Method, Response, StatusCode,
+   |         ^^^^^^^^^^^  ^^^^^^  ^^^^^^^^
+16 |         header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, SET_COOKIE},
+   |                  ^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `NON_ALPHANUMERIC` and `percent_encode`
+  --> src/main.rs:24:24
+   |
+24 | use percent_encoding::{NON_ALPHANUMERIC, percent_encode};
+   |                        ^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^
+
+warning: unused import: `serde::Deserialize`
+  --> src/main.rs:25:5
+   |
+25 | use serde::Deserialize;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Value` and `json`
+  --> src/main.rs:26:18
+   |
+26 | use serde_json::{Value, json};
+   |                  ^^^^^  ^^^^
+
+warning: unused imports: `Duration`, `OffsetDateTime`, and `format_description::well_known::Rfc2822`
+  --> src/main.rs:27:12
+   |
+27 | use time::{Duration, OffsetDateTime, format_description::well_known::Rfc2822};
+   |            ^^^^^^^^  ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `cors::CorsLayer`
+  --> src/main.rs:29:18
+   |
+29 | use tower_http::{cors::CorsLayer, services::ServeDir, trace::TraceLayer};
+   |                  ^^^^^^^^^^^^^^^
+
+warning: unused import: `fmt::format`
+  --> src/main.rs:32:26
+   |
+32 | use tracing_subscriber::{fmt::format, layer::SubscriberExt, util::SubscriberInitExt};
+   |                          ^^^^^^^^^^^
+
+warning: unused variable: `state`
+  --> src/middlewares.rs:30:11
+   |
+30 |     State(state): State<SharedState>,
+   |           ^^^^^ help: if this is intentional, prefix it with an underscore: `_state`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `user_has_required_role`
+   --> src/middlewares.rs:171:17
+    |
+171 |             let user_has_required_role = required_roles.is_empty()
+    |                 ^^^^^^^^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_user_has_required_role`
+
+warning: function `index2` is never used
+   --> src/main.rs:158:10
+    |
+158 | async fn index2(
+    |          ^^^^^^
+    |
+    = note: `#[warn(dead_code)]` on by default
+
+warning: function `index` is never used
+   --> src/main.rs:192:10
+    |
+192 | async fn index(State(state): State<SharedState>) -> Result<Html<String>, impl IntoResponse> {
+    |          ^^^^^
+
+warning: multiple variants are never constructed
+  --> src/error.rs:12:5
+   |
+11 | pub enum AppError {
+   |          -------- variants in this enum
+12 |     InvalidInput(String),
+   |     ^^^^^^^^^^^^
+13 |     NotFound,
+   |     ^^^^^^^^
+14 |     InternalServerError,
+   |     ^^^^^^^^^^^^^^^^^^^
+15 |     SessionError(String),
+16 |     InvalidSecret,
+   |     ^^^^^^^^^^^^^
+17 |     VerificationFailed,
+   |     ^^^^^^^^^^^^^^^^^^
+18 |     PermissionDenied,
+   |     ^^^^^^^^^^^^^^^^
+19 |     UserNotAuthenticated,
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `AppError` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: methods `get_by_id`, `create`, `update`, and `delete` are never used
+  --> src/folha/service.rs:26:18
+   |
+19 | impl FolhaService {
+   | ----------------- methods in this implementation
+...
+26 |     pub async fn get_by_id(&self, pool: &PgPool, id: i64) -> Result<Folha> {
+   |                  ^^^^^^^^^
+...
+30 |     pub async fn create(&self, pool: &PgPool, input: CreateFolha) -> Result<Folha> {
+   |                  ^^^^^^
+...
+34 |     pub async fn update(&self, pool: &PgPool, id: i64, input: UpdateFolha) -> Result<Folha> {
+   |                  ^^^^^^
+...
+38 |     pub async fn delete(&self, pool: &PgPool, id: i64) -> Result<()> {
+   |                  ^^^^^^
+
+warning: static `SECRET` is never used
+  --> src/middlewares.rs:20:8
+   |
+20 | static SECRET: &[u8] = b"chave_secreta_super_segura";
+   |        ^^^^^^
+
+warning: function `autenticar` is never used
+  --> src/middlewares.rs:29:14
+   |
+29 | pub async fn autenticar(
+   |              ^^^^^^^^^^
+
+warning: function `gerar_token` is never used
+   --> src/middlewares.rs:119:8
+    |
+119 | pub fn gerar_token(usuario: &str) -> String {
+    |        ^^^^^^^^^^^
+
+warning: function `log_middleware` is never used
+   --> src/middlewares.rs:140:10
+    |
+140 | async fn log_middleware(req: Request<Body>, next: Next) -> Response<Body> {
+    |          ^^^^^^^^^^^^^^
+
+warning: function `verificar_credenciais` is never used
+   --> src/middlewares.rs:154:4
+    |
+154 | fn verificar_credenciais(username: &str, password: &str) -> bool {
+    |    ^^^^^^^^^^^^^^^^^^^^^
+
+warning: function `role_check` is never used
+   --> src/middlewares.rs:158:14
+    |
+158 | pub async fn role_check(
+    |              ^^^^^^^^^^
+
+warning: function `require_roles` is never used
+   --> src/middlewares.rs:209:8
+    |
+209 | pub fn require_roles(
+    |        ^^^^^^^^^^^^^
+
+warning: fields `find`, `page`, and `page_size` are never read
+  --> src/repository.rs:27:9
+   |
+26 | pub struct PaginationQuery {
+   |            --------------- fields in this struct
+27 |     pub find: Option<String>,
+   |         ^^^^
+28 |     pub page: Option<u32>,
+   |         ^^^^
+29 |     pub page_size: Option<u32>,
+   |         ^^^^^^^^^
+   |
+   = note: `PaginationQuery` has a derived impl for the trait `Debug`, but this is intentionally ignored during dead code analysis
+
+warning: fields `msg` and `status` are never read
+  --> src/repository.rs:36:9
+   |
+33 | pub struct ListParams {
+   |            ---------- fields in this struct
+...
+36 |     pub msg: Option<String>,
+   |         ^^^
+37 |     pub status: Option<String>,
+   |         ^^^^^^
+
+warning: field `id` is never read
+  --> src/repository.rs:43:9
+   |
+42 | pub struct IdParams {
+   |            -------- field in this struct
+43 |     pub id: Option<i64>,
+   |         ^^
+
+warning: multiple methods are never used
+   --> src/repository.rs:64:8
+    |
+47  | pub trait Repository<T, ID>
+    |           ---------- methods in this trait
+...
+64  |     fn table_name(&self) -> &str;
+    |        ^^^^^^^^^^
+...
+72  |     fn order_by_column(&self) -> &str {
+    |        ^^^^^^^^^^^^^^^
+...
+76  |     fn select_clause_view(&self) -> &str {
+    |        ^^^^^^^^^^^^^^^^^^
+...
+79  |     fn from_clause_view(&self) -> &str {
+    |        ^^^^^^^^^^^^^^^^
+...
+83  |     fn extra_where(&self) -> Option<&str> {
+    |        ^^^^^^^^^^^
+...
+175 |     async fn get_by_id(&self, pool: &PgPool, id: ID) -> anyhow::Result<T> {
+    |              ^^^^^^^^^
+...
+186 |     async fn create(&self, pool: &PgPool, input: Self::CreateInput) -> Result<T>;
+    |              ^^^^^^
+187 |
+188 |     async fn update(&self, pool: &PgPool, id: ID, input: Self::UpdateInput) -> Result<T>;
+    |              ^^^^^^
+189 |
+190 |     async fn delete(&self, pool: &PgPool, id: ID) -> Result<()>;
+    |              ^^^^^^
+191 |
+192 |     async fn get_paginated_view(
+    |              ^^^^^^^^^^^^^^^^^^
+
+warning: field `message` is never read
+  --> src/state.rs:10:9
+   |
+7  | pub struct AppState {
+   |            -------- field in this struct
+...
+10 |     pub message: Arc<MessageResponse>,
+   |         ^^^^^^^
+   |
+   = note: `AppState` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: `folhaweb_rust` (bin "folhaweb_rust") generated 39 warnings (run `cargo fix --bin "folhaweb_rust"` to apply 21 suggestions)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.19s
+     Running `target/debug/folhaweb_rust`
+[2m2025-09-26T02:45:18.123824Z[0m [32m INFO[0m [2mfolhaweb_rust[0m[2m:[0m Starting server on http://0.0.0.0:2000
+[2m2025-09-26T02:45:18.123867Z[0m [34mDEBUG[0m [2mfolhaweb_rust[0m[2m:[0m Server running
+[2m2025-09-26T02:45:56.114051Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:45:56.114242Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:45:56.114324Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:45:56.114366Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:45:56.116791Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:45:56.122074Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m4.9131ms [3melapsed_secs[0m[2m=[0m0.0049131
+[2m2025-09-26T02:45:56.151327Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m1.465273ms [3melapsed_secs[0m[2m=[0m0.001465273
+[2m2025-09-26T02:45:56.152092Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m35 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:45:56.152295Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:45:56.152350Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:13.722803Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:13.727210Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m4.078186ms [3melapsed_secs[0m[2m=[0m0.004078186
+[2m2025-09-26T02:46:13.728389Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m771.796µs [3melapsed_secs[0m[2m=[0m0.000771796
+[2m2025-09-26T02:46:13.728904Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m6 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:14.560368Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:14.564245Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.487177ms [3melapsed_secs[0m[2m=[0m0.003487177
+[2m2025-09-26T02:46:14.564929Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m387.493µs [3melapsed_secs[0m[2m=[0m0.000387493
+[2m2025-09-26T02:46:14.565411Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:17.413703Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:17.413839Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:46:17.413998Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:17.414075Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:17.417860Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:17.422961Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m4.691305ms [3melapsed_secs[0m[2m=[0m0.004691305
+[2m2025-09-26T02:46:17.423693Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m395.903µs [3melapsed_secs[0m[2m=[0m0.000395903
+[2m2025-09-26T02:46:17.424105Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m6 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:17.424192Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:17.424236Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:27.131306Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:27.131408Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:46:27.131507Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:27.131589Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:27.141789Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:27.144918Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m2.615253ms [3melapsed_secs[0m[2m=[0m0.002615253
+[2m2025-09-26T02:46:27.145472Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m339.804µs [3melapsed_secs[0m[2m=[0m0.000339804
+[2m2025-09-26T02:46:27.146050Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m4 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:27.146184Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:27.146259Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:30.274067Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758854790271 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:30.274159Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758854790271 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:46:30.274246Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:30.274307Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:30.275924Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:30.279454Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.089055ms [3melapsed_secs[0m[2m=[0m0.003089055
+[2m2025-09-26T02:46:30.280264Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m488.422µs [3melapsed_secs[0m[2m=[0m0.000488422
+[2m2025-09-26T02:46:30.280673Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m4 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:37.661976Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:37.662174Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:46:37.662296Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:37.662358Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:37.666821Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:37.670938Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.605977ms [3melapsed_secs[0m[2m=[0m0.003605977
+[2m2025-09-26T02:46:37.671753Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m501.931µs [3melapsed_secs[0m[2m=[0m0.000501931
+[2m2025-09-26T02:46:37.672322Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:37.672411Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:37.672462Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:40.126087Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:40.130165Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.742664ms [3melapsed_secs[0m[2m=[0m0.003742664
+[2m2025-09-26T02:46:40.131103Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m563.08µs [3melapsed_secs[0m[2m=[0m0.00056308
+[2m2025-09-26T02:46:40.131511Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:41.004325Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:41.007498Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m2.85516ms [3melapsed_secs[0m[2m=[0m0.00285516
+[2m2025-09-26T02:46:41.008136Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m386.943µs [3melapsed_secs[0m[2m=[0m0.000386943
+[2m2025-09-26T02:46:41.008640Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m4 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:41.193788Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:41.198113Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.957421ms [3melapsed_secs[0m[2m=[0m0.003957421
+[2m2025-09-26T02:46:41.199026Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m528.821µs [3melapsed_secs[0m[2m=[0m0.000528821
+[2m2025-09-26T02:46:41.199528Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:43.733978Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:43.734097Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/ [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T02:46:43.734197Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:43.734243Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T02:46:43.738712Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T02:46:43.742884Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.745795ms [3melapsed_secs[0m[2m=[0m0.003745795
+[2m2025-09-26T02:46:43.743539Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m321.185µs [3melapsed_secs[0m[2m=[0m0.000321185
+[2m2025-09-26T02:46:43.743967Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T02:46:43.744050Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T02:46:43.744092Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:43:17.544422Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758886997540 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:43:17.544519Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758886997540 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:43:17.544613Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:43:17.544667Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:43:17.546050Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:43:17.578905Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m5.470309ms [3melapsed_secs[0m[2m=[0m0.005470309
+[2m2025-09-26T11:43:17.607149Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m1.303727ms [3melapsed_secs[0m[2m=[0m0.001303727
+[2m2025-09-26T11:43:17.607730Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m61 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:09.919271Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887049916 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:09.919350Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887049916 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:09.919425Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:09.919469Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:09.920465Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:09.925035Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m4.257613ms [3melapsed_secs[0m[2m=[0m0.004257613
+[2m2025-09-26T11:44:09.925930Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m543.043µs [3melapsed_secs[0m[2m=[0m0.000543043
+[2m2025-09-26T11:44:09.926427Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:11.381081Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887051378 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:11.381160Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887051378 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:11.381230Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:11.381272Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:11.382232Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:11.386524Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.995961ms [3melapsed_secs[0m[2m=[0m0.003995961
+[2m2025-09-26T11:44:11.387326Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m473.592µs [3melapsed_secs[0m[2m=[0m0.000473592
+[2m2025-09-26T11:44:11.387823Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:11.675306Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887051672 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:11.675409Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887051672 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:11.675505Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:11.675583Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:11.676515Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:11.680263Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.502718ms [3melapsed_secs[0m[2m=[0m0.003502718
+[2m2025-09-26T11:44:11.681163Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m562.433µs [3melapsed_secs[0m[2m=[0m0.000562433
+[2m2025-09-26T11:44:11.681775Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:18.511398Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887058508 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:18.511493Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887058508 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:18.511579Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:18.511631Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:18.512615Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:18.516820Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.9231ms [3melapsed_secs[0m[2m=[0m0.0039231
+[2m2025-09-26T11:44:18.517724Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m547.033µs [3melapsed_secs[0m[2m=[0m0.000547033
+[2m2025-09-26T11:44:18.518311Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:19.169427Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887059166 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:19.169505Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887059166 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:19.169590Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:19.169646Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:19.170869Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:19.175138Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.984771ms [3melapsed_secs[0m[2m=[0m0.003984771
+[2m2025-09-26T11:44:19.176129Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m616.153µs [3melapsed_secs[0m[2m=[0m0.000616153
+[2m2025-09-26T11:44:19.176614Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:30.203996Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887070200 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:30.204075Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/?id=70edc753-2cec-4d7c-baac-b06fd4519fdc&vscodeBrowserReqId=1758887070200 [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m0 ms [3mstatus[0m[2m=[0m303
+[2m2025-09-26T11:44:30.204147Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m saving session
+[2m2025-09-26T11:44:30.204188Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m [2mtower_sessions::service[0m[2m:[0m adding session cookie
+[2m2025-09-26T11:44:30.205293Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:30.209446Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.83827ms [3melapsed_secs[0m[2m=[0m0.00383827
+[2m2025-09-26T11:44:30.210383Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m549.753µs [3melapsed_secs[0m[2m=[0m0.000549753
+[2m2025-09-26T11:44:30.210884Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:33.464371Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:33.468104Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.355607ms [3melapsed_secs[0m[2m=[0m0.003355607
+[2m2025-09-26T11:44:33.469045Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m595.883µs [3melapsed_secs[0m[2m=[0m0.000595883
+[2m2025-09-26T11:44:33.469662Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:34.179584Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:34.183679Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m3.68747ms [3melapsed_secs[0m[2m=[0m0.00368747
+[2m2025-09-26T11:44:34.184477Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m445.732µs [3melapsed_secs[0m[2m=[0m0.000445732
+[2m2025-09-26T11:44:34.185025Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m5 ms [3mstatus[0m[2m=[0m200
+[2m2025-09-26T11:44:34.535214Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_request[0m[2m:[0m started processing request
+[2m2025-09-26T11:44:34.538361Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT COUNT(*) FROM cadastro_folha …" [3mdb.statement[0m[2m=[0m"\n\nSELECT COUNT(*) FROM cadastro_folha f \n" [3mrows_affected[0m[2m=[0m1 [3mrows_returned[0m[2m=[0m1 [3melapsed[0m[2m=[0m2.840175ms [3melapsed_secs[0m[2m=[0m0.002840175
+[2m2025-09-26T11:44:34.539227Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2msqlx::query[0m[2m:[0m [3msummary[0m[2m=[0m"SELECT f.id, f.orgao_id, f.ano, …" [3mdb.statement[0m[2m=[0m"\n\nSELECT f.id, f.orgao_id, f.ano, f.mes, \n        f.servidor_id, f.salario, f.base_fgts, f.base_inss,\n        f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,\n        f.departamento_id, f.vinculo_id FROM cadastro_folha f  ORDER BY f.id DESC LIMIT $1 OFFSET $2\n" [3mrows_affected[0m[2m=[0m10 [3mrows_returned[0m[2m=[0m10 [3melapsed[0m[2m=[0m360.642µs [3melapsed_secs[0m[2m=[0m0.000360642
+[2m2025-09-26T11:44:34.539609Z[0m [34mDEBUG[0m [1mcall[0m[2m:[0m[1mrequest[0m[1m{[0m[3mmethod[0m[2m=[0mGET [3muri[0m[2m=[0m/folha/folha [3mversion[0m[2m=[0mHTTP/1.1[1m}[0m[2m:[0m [2mtower_http::trace::on_response[0m[2m:[0m finished processing request [3mlatency[0m[2m=[0m4 ms [3mstatus[0m[2m=[0m200

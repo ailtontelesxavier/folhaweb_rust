@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>teste</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+
+  <!-- Load Tailwind CSS via CDN (production approach)
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        tailwind.config = {
+            plugins: [window.daisyui],
+            daisyui: {
+                themes: ["corporate", "coffee"]
+            }
+        }
+    </script>
+    -->
+
+  <!--
+    <link rel="shortcut icon" href="/static/img/favicon.png" type="image/png" />
+    -->
+
+  <!--CKEditor 5 -->
+  <!--<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>-->
+  <script src="/static/js/ckeditor.js"></script>
+
+  {# modal flowbite #}
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+  <script src="/static/js/jquery-3.7.1.min.js"></script>
+  <script defer src="/static/js/jquery.blockUI.js"></script>
+
+
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <title>{% block title %}{%endblock%}</title>
+  {% block extra_css %}{% endblock %}
+
+  {% block head %}{% endblock %}
+
+</head>
+
+<body>
+  <!--Load-->
+  <div id="loader" class="hidden fixed inset-0 flex items-center justify-center bg-transparent z-50">
+    <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  {% block body %}{% endblock %}
+
+
+  <!-- <div id="messageBox" class="hidden toast toast-top toast-center overflow-y-auto">
+      <span class="alert alert-success">
+        <span id="messageText">New mail arrived.</span>
+        <span id="closeMessage" onclick="" class="ml-1 hover:cursor-pointer text-xs font-bold">✖</span>
+      </span>
+  </div> -->
+
+  <script>
+    //$.blockUI.defaults.baseZ = 9999;
+    //$.blockUI.apply();
+    function showLoader() {
+      //document.getElementById("loader").classList.remove("d-none");
+      //$.blockUI();
+      $.blockUI({
+        message: "<img style='max-width:350px; width: 100%;' src='/static/img/loading.gif' />",
+        style: "border: none;"
+      });
+    }
+    function hideLoader() {
+      //document.getElementById("loader").classList.add("d-none");
+      $.unblockUI();
+    }
+    /* function showLoader() {
+        document.getElementById("loader").classList.remove("hidden");
+    }
+    
+    function hideLoader() {
+        document.getElementById("loader").classList.add("hidden");
+    } */
+    /* function showMessage(text, type = 'success') {
+      const messageBox = document.getElementById("messageBox");
+      const messageText = document.getElementById("messageText");
+      const closeMessage = document.getElementById("closeMessage");
+
+      messageText.textContent = text;
+      messageBox.classList.remove("hidden");
+      
+      if (type === "error") {
+        messageBox.classList.add("bg-red-200", "text-red-800");
+      } else {
+          messageBox.classList.add("bg-green-200", "text-green-800");
+      }
+
+      // Evento para fechar a mensagem ao clicar no botão ✖
+      document.getElementById("closeMessage").addEventListener("click", () => {
+        messageBox.classList.add("hidden");
+      });
+
+      // Ocultar automaticamente após 5 segundos
+      setTimeout(() => messageBox.classList.add("hidden"), 5000);
+    } */
+    function showMessage(text, type = 'success') {
+
+      if (type === "error") {
+        $.blockUI({
+          message: `
+          <div class="">
+            <span class="alert">
+              <span class='text-red-800' style='max-width:350px; width: 100%;' >${text}</span>
+              <span id="closeMessage" onclick="$.unblockUI()" class="ml-1 hover:cursor-pointer text-xs font-bold">✖</span>
+            </span>
+          </div>`,
+          style: "border: none;"
+        });
+      } else {
+        $.blockUI({
+          message: `
+          <div class="">
+            <span class="alert">
+              <span class='text-green-800' style='max-width:350px; width: 100%;' >${text}</span>
+              <span id="closeMessage" onclick="$.unblockUI()" class="ml-1 hover:cursor-pointer text-xs font-bold">✖</span>
+            </span>
+          </div>`,
+          style: "border: none;"
+        });
+      }
+
+      // Ocultar automaticamente após 5 segundos
+      setTimeout(() => $.unblockUI(), 5000);
+    }
+  </script>
+
+  <!-- Toggle de tema -->
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Aplica o tema salvo no cookie ao carregar a página
+    const savedTheme = getCookie('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    // Toggle + salvar no cookie
+    const toggleBtn = document.getElementById("themeToggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        const newTheme = current === "corporate" ? "coffee" : "corporate";
+        html.setAttribute("data-theme", newTheme);
+        document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+        //altera do menu lateral
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+          var thema = current === "dark" ? "coffee" : "";
+          sidebar.setAttribute("data-theme", thema);
+        }
+      });
+    }
+  </script>
+
+  {# aplicar mascar de dinheiro #}
+  <script>
+    function formatarMoedaBRL(valor) {
+      valor = valor.replace(/\D/g, ""); // remove tudo que não for número
+      if (valor === "") {
+        return "0,00";
+      }
+      valor = (parseInt(valor, 10) / 100).toFixed(2); // divide por 100 e fixa 2 casas
+      return valor
+        .replace(".", ",") // troca ponto por vírgula (centavos)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, "."); // separador de milhar
+    }
+
+    // Aplica a máscara para todos os inputs com a classe "moeda-br"
+    document.querySelectorAll(".moeda-br").forEach(function (input) {
+      input.addEventListener("input", function (e) {
+        const cursor = e.target.selectionStart;
+        const antes = e.target.value.length;
+        e.target.value = formatarMoedaBRL(e.target.value);
+        const depois = e.target.value.length;
+        e.target.setSelectionRange(
+          cursor + (depois - antes),
+          cursor + (depois - antes)
+        );
+      });
+    });
+
+    //{#aplica a máscara de moeda BRL quando o DOM estiver completamente carregado#}
+    function aplicarMascaraMoedaBRL() {
+      document.querySelectorAll(".moeda-br").forEach(function (input) {
+        if (input.dataset.masked === "true") return; // evita adicionar duplicado
+
+        // Formata valor inicial se existir
+        if (input.value) {
+          input.value = formatarMoedaBRL(input.value);
+        }
+
+        input.addEventListener("input", function (e) {
+          const cursor = e.target.selectionStart;
+          const antes = e.target.value.length;
+
+          e.target.value = formatarMoedaBRL(e.target.value);
+
+          const depois = e.target.value.length;
+          e.target.setSelectionRange(
+            cursor + (depois - antes),
+            cursor + (depois - antes)
+          );
+        });
+
+        input.dataset.masked = "true"; // marca como já processado
+      });
+    }
+
+    // Executa a função quando o DOM estiver pronto
+    document.addEventListener("DOMContentLoaded", aplicarMascaraMoedaBRL);
+  </script>
+
+  <script>
+    // Aplicar máscara de CPF corretamente
+    document.querySelectorAll(".cpf").forEach(input => {
+        input.removeEventListener("input", aplicarMascaraCPF);
+        input.addEventListener("input", function () {
+            aplicarMascaraCPF(this);
+        });
+    });
+
+    function aplicarMascaraCPF(input) {
+        let value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+        if (value.length > 11) value = value.slice(0, 11); // Limita a 11 caracteres
+
+        value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+        value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+        value = value.replace(/\.(\d{3})(\d)/, ".$1-$2");
+
+        input.value = value;
+    }
+
+    function aplicarMascaraCPFouCNPJ(input) {
+        let value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+        if (value.length <= 11) {
+            // Aplica a máscara de CPF
+            value = value.replace(/^(\d{3})(\d)/, "$1.$2");
+            value = value.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+            value = value.replace(/\.(\d{3})(\d)/, ".$1-$2");
+        } else {
+            // Limita a 14 caracteres (CNPJ)
+            value = value.slice(0, 14);
+
+            // Aplica a máscara de CNPJ
+            value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
+        }
+
+        input.value = value;
+    }
+
+    /* document.querySelectorAll(".cnpj").forEach(input => {
+    input.addEventListener("input", function () {
+      aplicarMascaraCPFouCNPJ(this);
+    });
+  });
+  */
+  // aplicar mascaras cpf cnpj
+  function aplicarMascaraCNPJ(input) {
+    let value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
+    if (value.length > 14) value = value.slice(0, 14); // Limita a 14 caracteres
+
+    value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+    value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+    value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+    value = value.replace(/(\d{4})(\d)/, "$1-$2");
+
+    input.value = value;
+  }
+  /* document.querySelectorAll(".cnpj").forEach(input => {
+    input.addEventListener("input", function () {
+      aplicarMascaraCNPJ(this);
+    });
+  }); */
+
+  document.querySelectorAll('.telefone').forEach(input => {
+    input.addEventListener("input", function () {
+      let v = this.value.replace(/\D/g, ''); // Remove tudo que não for número
+      if (v.length > 11) {
+        v = v.slice(0, 11); // Limita a 11 caracteres
+      }
+      if (v.length <= 10) {
+        // Formato para telefone fixo: (99) 9999-9999
+        v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      } else {
+        // Formato para celular: (99) 99999-9999
+        v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+      }
+
+      this.value = v;
+    });
+  });
+
+  // Máscara para CEP
+  document.querySelectorAll(".cep").forEach(input => {
+      input.removeEventListener("input", aplicarMascaraCEP);
+      input.addEventListener("input", function () {
+          aplicarMascaraCEP(this);
+      });
+  });
+
+  function aplicarMascaraCEP(input) {
+      let value = input.value.replace(/\D/g, "");
+      if (value.length > 8) value = value.slice(0, 8);
+
+      value = value.replace(/^(\d{5})(\d)/, "$1-$2");
+
+      input.value = value;
+  }
+</script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  {% block extra_js %}{% endblock %}
+
+  <style>
+    .alert {
+      @apply rounded-lg p-4 mb-4;
+    }
+
+    .alert-success {
+      @apply bg-green-100 border border-green-400 text-green-700;
+    }
+
+    .alert-error {
+      @apply bg-red-100 border border-red-400 text-red-700;
+    }
+
+    .alert-info {
+      @apply bg-blue-100 border border-blue-400 text-blue-700;
+    }
+  </style>
+
+</body>
+
+</html>
+{% include "components/icons_svg.html"%}

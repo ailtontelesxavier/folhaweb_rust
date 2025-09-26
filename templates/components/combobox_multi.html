@@ -1,0 +1,97 @@
+{% macro combobox_multi(field_name, endpoint, field_label='name', placeholder='', attrs="", search='', value=[]) %}
+{% set field_name = field_name %}
+{% set field_label = field_label %}
+{% set placeholder = placeholder %}
+{% set attrs = attrs %}
+{% set endpoint = endpoint %}
+{% set search = search %}
+{% set value = value %}
+<div class="relative w-full mb-4 mx-auto">
+    <input id="search_{{ field_name }}" type="text" placeholder="{{ placeholder }}..." value="{{ search }}"
+           class="input w-full rounded-md shadow px-4 py-2  focus:outline-none"
+           {{ attrs }}>
+    <div id="dropdown_{{ field_name }}" class="absolute z-10 mt-1 max-h-60 min-w-xs w-full overflow-auto rounded-md bg-white shadow-lg hidden">
+        <ul class="py-1"></ul>
+    </div>
+    <div id="selected_{{ field_name }}" class="flex flex-wrap gap-2 mt-2">
+        {% for item in value %}
+            <span class="badge bg-blue-200 px-2 py-1 rounded flex items-center gap-1">
+                {{ item.name }}
+                <button type="button" class="remove-item" data-id="{{ item.id }}">&times;</button>
+            </span>
+        {% endfor %}
+    </div>
+    <input type="hidden" id="hidden_{{ field_name }}_id" name="{{ field_name }}" value="{{ value|map(attribute='id')|join(',') }}">
+</div>
+
+<script>
+(function() {
+    const fieldName = "{{ field_name }}";
+    let selectedItems = [];// value| safe #;
+    const searchInput = document.getElementById('search_' + fieldName);
+    const dropdown = document.getElementById('dropdown_' + fieldName);
+    const ul = dropdown.querySelector('ul');
+    const hiddenInput = document.getElementById('hidden_' + fieldName + '_id');
+    const selectedDiv = document.getElementById('selected_' + fieldName);
+
+    function renderSelected() {
+        selectedDiv.innerHTML = '';
+        selectedItems.forEach(item => {
+            const span = document.createElement('span');
+            span.className = 'badge bg-blue-200 px-2 py-1 rounded flex items-center gap-1';
+            span.innerHTML = `${item.name} <button type="button" class="remove-item" data-id="${item.id}">&times;</button>`;
+            selectedDiv.appendChild(span);
+        });
+        hiddenInput.value = selectedItems.map(i => i.id).join(',');
+        selectedDiv.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id');
+                selectedItems = selectedItems.filter(i => i.id != id);
+                renderSelected();
+            });
+        });
+    }
+
+    async function fetchOptions(searchTerm) {
+        try {
+            const response = await axios.get(`{{ endpoint|safe }}?find=${searchTerm}&page=1`);
+            const data = response.data;
+            ul.innerHTML = '';
+            if (data.data.length > 0) {
+                dropdown.classList.remove('hidden');
+                data.data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'cursor-pointer px-4 py-2 hover:bg-cyan-200';
+                    li.textContent = item.{{ field_label }};
+                    li.addEventListener('mousedown', () => {
+                        // adiciona ao array se ainda não estiver
+                        if (!selectedItems.find(i => i.id === item.id)) {
+                            selectedItems.push({id: item.id, name: item.{{ field_label }}});
+                        }
+                        renderSelected();
+                        dropdown.classList.add('hidden');
+                        searchInput.value = '';
+                    });
+                    ul.appendChild(li);
+                });
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        } catch (error) {
+            console.error("Erro ao buscar opções!", error);
+        }
+    }
+
+    searchInput.addEventListener('click', () => fetchOptions(searchInput.value));
+    searchInput.addEventListener('input', () => fetchOptions(searchInput.value));
+
+    document.addEventListener('click', function(evt) {
+        if (!dropdown.contains(evt.target) && evt.target !== searchInput) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    renderSelected();
+})();
+</script>
+{% endmacro %}
