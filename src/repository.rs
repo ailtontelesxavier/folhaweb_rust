@@ -90,7 +90,7 @@ where
         find: Option<&str>,
         page: i32,
         page_size: i32,
-        searchable_fields_and: Option<&[(&str, &str)]>,
+        filter_fields_and: Option<&[(&str, &str)]>,
     ) -> Result<PaginatedResponse<T>>
     where
         T: for<'r> sqlx::FromRow<'r, sqlx::postgres::PgRow> + Send + Unpin,
@@ -116,7 +116,7 @@ where
             }
 
             // --- AND fields ---
-            if let Some(and_fields) = searchable_fields_and {
+            if let Some(and_fields) = filter_fields_and {
                 for (field, op) in and_fields {
                     let placeholder = format!("${}", params.len() + 1);
                     field_parts.push(format!("{} {} {}", field, op, placeholder));
@@ -219,7 +219,7 @@ where
         find: Option<&str>,
         page: i32,
         page_size: i32,
-        searchable_fields_and: Option<&[(&str, &str)]>,
+        filter_fields_and: Option<&[(&str, &str)]>,
     ) -> Result<PaginatedResponse<T>>
     where
         T: for<'r> sqlx::FromRow<'r, sqlx::postgres::PgRow> + Send + Unpin,
@@ -245,7 +245,7 @@ where
             }
 
             // --- AND fields ---
-            if let Some(and_fields) = searchable_fields_and {
+            if let Some(and_fields) = filter_fields_and {
                 for (field, op) in and_fields {
                     let placeholder = format!("${}", params.len() + 1);
                     field_parts.push(format!("{} {} {}", field, op, placeholder));
