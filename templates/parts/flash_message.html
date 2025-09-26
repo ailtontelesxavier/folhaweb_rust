@@ -1,6 +1,10 @@
-{# Exibir mensagem flash se existir #}
-{% if flash_message %}
-<div class="alert {% if flash_status == 'success' %}alert-success{% elif flash_status == 'error' %}alert-error{% else %}alert-info{% endif %} mb-4">
-    <span>{{ flash_message }}</span>
-</div>
+{# Exibir mensagem se existir #}
+{% if messages %}
+<ul>
+    {% for msg in messages %}
+    <li class="alert {% if msg.level == 'success' %}alert-success{% elif msg.level == 'error' %}alert-error{% else %}alert-info{% endif %} mb-4">
+        <span><strong>[{{ msg.level|upper }}]</strong> {{ msg.text }}</span>
+    </li>
+    {% endfor %}
+</ul>
 {% endif %}

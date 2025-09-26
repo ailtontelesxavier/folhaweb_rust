@@ -29,6 +29,10 @@ impl Repository<Folha, i64> for FolhaRepository {
         "f.id"
     }
 
+    fn order_by_column(&self) -> &str {
+        "f.ano DESC, f.mes ASC"
+    }
+
     fn searchable_fields(&self) -> &[&str] {
         &["f.ano", "f.mes"]
     }

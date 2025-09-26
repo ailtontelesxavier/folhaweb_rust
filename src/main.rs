@@ -92,7 +92,7 @@ async fn main() {
         .route("/index", get(rota_index2)) */
         .route("/", get(set_messages_handler))
         .route("/read-messages", get(read_messages_handler))
-        .nest("/folha", router())
+        .nest("/cadastro", router())
         .nest_service("/static", server_dir)
         .layer(TraceLayer::new_for_http())
         .layer(middleware::from_fn(handle_forbidden)) // Middleware para 403

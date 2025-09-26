@@ -17,6 +17,7 @@ use minijinja::context;
 use serde_json::Value;
 use tracing::debug;
 
+use crate::folha::model::Folha;
 use crate::folha::service::FolhaService;
 use crate::repository::ListParams;
 use crate::state::SharedState;
@@ -76,7 +77,7 @@ pub async fn list_folha(
                 messages => messages_vec,
             };
 
-            match state.templates.get_template("folha_list.html") {
+            match state.templates.get_template("cadastro/folha_list.html") {
                 Ok(template) => match template.render(context) {
                     Ok(html) => Html(html).into_response(),
                     Err(err) => {
@@ -95,4 +96,21 @@ pub async fn list_folha(
             Redirect::to(&"/").into_response()
         }
     }
+}
+
+/*
+api regiao
+
+*/
+pub async fn folha_api_by_id(
+    Path(id): Path<i64>,
+    State(state): State<SharedState>,
+) -> Result<Json<Folha>, StatusCode> {
+    let service = FolhaService::new();
+    let res = service.get_by_id(&state.db, id).await.map_err(|err| {
+        debug!("error:{}", err);
+        StatusCode::INTERNAL_SERVER_ERROR
+    })?;
+
+    Ok(Json(res))
 }

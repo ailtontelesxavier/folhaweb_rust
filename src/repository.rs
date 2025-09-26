@@ -70,7 +70,7 @@ where
     }
 
     fn order_by_column(&self) -> &str {
-        "id"
+        "id DESC"
     }
 
     fn select_clause_view(&self) -> &str {
@@ -238,7 +238,7 @@ where
 
         // === DATA ===
         let data_query = format!(
-            "SELECT {} FROM {} {} ORDER BY {} DESC LIMIT ${} OFFSET ${}",
+            "SELECT {} FROM {} {} ORDER BY {} LIMIT ${} OFFSET ${}",
             self.select_clause_view(),
             self.from_clause_view(),
             where_clause,
