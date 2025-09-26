@@ -37,19 +37,22 @@ impl Repository<Folha, i64> for FolhaRepository {
         "f.id, f.orgao_id, f.ano, f.mes, 
         f.servidor_id, f.salario, f.base_fgts, f.base_inss,
         f.base_irrf, f.ded_irrf, f.cargo_id, f.setor_id,
-        f.departamento_id, f.vinculo_id"
+        f.departamento_id, f.vinculo_id, serv.nome as serv_nome, org.nome as org_nome"
     }
 
     fn from_clause(&self) -> &str {
-        "cadastro_folha f"
+        "cadastro_folha f
+        INNER JOIN cadastro_servidor serv ON serv.id = f.servidor_id
+        INNER JOIN cadastro_orgao org ON org.id = f.orgao_id
+        "
     }
 
     async fn create(&self, pool: &PgPool, input: Self::CreateInput) -> Result<Folha> {
         Ok(sqlx::query_as!(
             Folha,
-            "INSERT INTO cadastro_folha(
+            r#"INSERT INTO cadastro_folha(
             orgao_id, ano, mes, servidor_id, salario, base_fgts, base_inss, base_irrf, ded_irrf, cargo_id, setor_id, departamento_id, vinculo_id)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *, NULL as "serv_nome?", NULL as "org_nome?" "#,
             input.orgao_id,
             input.ano,
             input.mes,
@@ -88,7 +91,7 @@ impl Repository<Folha, i64> for FolhaRepository {
                 departamento_id = COALESCE($12, departamento_id),
                 vinculo_id = COALESCE($13, vinculo_id)
             WHERE id = $14
-            RETURNING *"#,
+            RETURNING *, NULL as "serv_nome?", NULL as "org_nome?" "#,
             input.orgao_id,
             input.ano,
             input.mes,

@@ -18,4 +18,8 @@ pub struct  Folha {
     pub setor_id: i32,
     pub departamento_id: i32,
     pub vinculo_id: i32,
+
+    // campos de outra tabela
+    pub serv_nome: Option<String>,
+    pub org_nome: Option<String>,
 }
