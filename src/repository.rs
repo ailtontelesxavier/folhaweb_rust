@@ -90,6 +90,7 @@ where
         find: Option<&str>,
         page: i32,
         page_size: i32,
+        searchable_fields_and: Option<&[(&str, &str)]>,
     ) -> Result<PaginatedResponse<T>>
     where
         T: for<'r> sqlx::FromRow<'r, sqlx::postgres::PgRow> + Send + Unpin,
