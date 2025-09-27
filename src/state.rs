@@ -7,13 +7,13 @@ use std::sync::Arc;
 pub struct AppState {
     pub db: Arc<PgPool>,
     pub templates: Arc<Environment<'static>>,
-    pub message: Arc<MessageResponse>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-pub struct MessageResponse {
-    pub status: String,
-    pub message: String,
+#[derive(Debug, Deserialize)]
+pub struct LoginPayload {
+    username: String,
+    password: String,
+    /* client_secret: String, */
 }
 
 pub type SharedState = Arc<AppState>;

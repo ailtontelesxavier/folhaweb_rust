@@ -36,3 +36,32 @@ pub struct UpdateFolha {
     pub departamento_id: Option<i32>,
     pub vinculo_id: Option<i32>,
 }
+
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CreateUf {
+    pub sigla: String,
+    pub nome: String
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UpdateUf {
+    pub id: i32,
+    pub sigla: Option<String>,
+    pub nome: Option<String>
+}
+
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct CreateMunicipio {
+    pub uf_id: i32,
+    pub nome: String
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UpdateMunicipio {
+    pub id: i32,
+    pub uf_id: Option<i32>,
+    pub nome: Option<String>
+}
+

@@ -23,3 +23,22 @@ pub struct  Folha {
     pub serv_nome: Option<String>,
     pub org_nome: Option<String>,
 }
+
+
+#[derive(Debug, Serialize, Deserialize, FromRow)]
+pub struct Uf {
+    pub id: i32,
+    pub sigla: String,
+    pub nome: String
+}
+
+
+#[derive(Debug, Serialize, Deserialize, FromRow)]
+pub struct Municipio {
+    pub id: i32,
+    pub uf_id: i32,
+    pub nome: String,
+
+    //outros
+    pub uf_nome: Option<String>,
+}
