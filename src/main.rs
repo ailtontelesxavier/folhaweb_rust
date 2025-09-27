@@ -65,11 +65,7 @@ async fn main() {
 
     let state = Arc::new(AppState {
         db: Arc::new(db_pool),
-        templates,
-        message: Arc::new(MessageResponse {
-            status: "info".to_string(),
-            message: "Sistema iniciado".to_string(),
-        }),
+        templates
     });
 
     // Initialize tracing
@@ -209,20 +205,21 @@ pub async fn page_not_found_handler(
 async fn get_login(
     State(state): State<SharedState>,
     Query(params): Query<HashMap<String, String>>,
+    messages: Messages,
 ) -> Result<Html<String>, impl IntoResponse> {
-    // Extrair mensagens flash dos parâmetros da query
-    let flash_message = params
-        .get("msg")
-        .map(|msg| urlencoding::decode(msg).unwrap_or_default().to_string());
-    let flash_status = params.get("status").and_then(|s| match s.as_str() {
-        "success" => Some("success"),
-        "error" => Some("error"),
-        _ => None,
-    });
+    let messages_vec: Vec<_> = messages
+        .clone()
+        .into_iter()
+        .map(|m| {
+            serde_json::json!({
+                "level": m.level.to_string(),
+                "text": m.to_string()
+            })
+        })
+        .collect();
 
     let context = minijinja::context! {
-        flash_message => flash_message,
-        flash_status => flash_status,
+        messages => messages_vec,
     };
 
     match state.templates.get_template("login.html") {
@@ -245,37 +242,27 @@ async fn get_login(
 async fn login(
     State(state): State<SharedState>,
     Form(payload): Form<LoginPayload>,
+    messages: Messages,
 ) -> Response<Body> {
     match UserService::get_by_username(&state.db, &payload.username).await {
         Ok(user) => {
             if !user.is_active {
-                let flash_url = helpers::create_flash_url(
-                    "/login",
-                    "Incorrect username or password",
-                    FlashStatus::Error,
-                );
-                return Redirect::to(&flash_url).into_response();
+                messages.error(&format!("Incorrect username or password"));
+
+                return Redirect::to("/login").into_response();
             }
 
             if let Ok(false) | Err(_) =
                 UserService::verify_password(&payload.password, &user.password)
             {
-                let flash_url = helpers::create_flash_url(
-                    "/login",
-                    "Incorrect username or password",
-                    FlashStatus::Error,
-                );
-                return Redirect::to(&flash_url).into_response();
+                messages.error(&format!("Incorrect username or password"));
+                return Redirect::to("/login").into_response();
             }
 
             /* if !UserService::is_valid_otp(&payload.client_secret, &user.otp_base32.clone().unwrap())
             {
-                let flash_url = helpers::create_flash_url(
-                    "/login",
-                    "Incorrect username or password",
-                    FlashStatus::Error,
-                );
-                return Redirect::to(&flash_url).into_response();
+                messages.error(&format!("Incorrect username or password"));
+                return Redirect::to("/login").into_response();
             } */
 
             let access_token = middlewares::gerar_token(&user.username);
@@ -301,6 +288,7 @@ async fn login(
                 }
                 Err(err) => {
                     debug!("Erro ao buscar módulos: {}", err);
+                    messages.error(&format!("Erro ao buscar módulos: {}", err));
                     json!([]).to_string() // Array vazio em caso de erro
                 }
             };
@@ -352,12 +340,8 @@ async fn login(
             response
         }
         Err(err) => {
-            let flash_url = helpers::create_flash_url(
-                "/login",
-                &format!("Senha não atualizada: {}", err),
-                FlashStatus::Error,
-            );
-            Redirect::to(&flash_url).into_response()
+            messages.error(&format!("Senha não atualizada: {}", err));
+            Redirect::to("/login").into_response()
         }
     }
 }
