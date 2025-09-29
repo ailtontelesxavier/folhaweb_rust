@@ -1,23 +1,21 @@
 mod cadastro;
+mod core;
 mod error;
 mod filters;
 mod middlewares;
 mod repository;
 mod state;
+mod utils;
 
 use std::{collections::HashMap, env, sync::Arc};
 
 use axum::{
     Form, Router,
-    body::Body,
     extract::{Query, State},
-    http::{
-        HeaderValue, Method, Response, StatusCode,
-        header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, SET_COOKIE},
-    },
+    http::{HeaderValue, StatusCode, header::SET_COOKIE},
     middleware::{self},
     response::{Html, IntoResponse, Redirect},
-    routing::get,
+    routing::{get, post},
 };
 
 use minijinja::{Environment, context, path_loader};
@@ -38,9 +36,10 @@ use axum_messages::{Messages, MessagesManagerLayer};
 
 use crate::{
     cadastro::router as router_cadastro,
+    core::UserService,
     filters::register_filters,
     middlewares::handle_forbidden,
-    state::{AppState, LoginPayload, MessageResponse, SharedState},
+    state::{AppState, LoginPayload, SharedState},
 };
 
 #[tokio::main]
@@ -65,7 +64,7 @@ async fn main() {
 
     let state = Arc::new(AppState {
         db: Arc::new(db_pool),
-        templates
+        templates,
     });
 
     // Initialize tracing
@@ -86,11 +85,11 @@ async fn main() {
     let rotas_privadas = Router::new()
         .route("/home", get(index))
         .route("/logout", get(logout))
-        .nest("/cadastro", router_cadastro())
-        .layer(middleware::from_fn_with_state(
-            state.clone(),
-            middlewares::autenticar,
-        ));
+        .nest("/cadastro", router_cadastro());
+    /* .layer(middleware::from_fn_with_state(
+        state.clone(),
+        middlewares::autenticar,
+    )); */
 
     let app = Router::new()
         .route("/", get(set_messages_handler))
@@ -241,57 +240,24 @@ async fn get_login(
 
 async fn login(
     State(state): State<SharedState>,
-    Form(payload): Form<LoginPayload>,
     messages: Messages,
-) -> Response<Body> {
+    Form(payload): Form<LoginPayload>,
+) -> impl IntoResponse {
     match UserService::get_by_username(&state.db, &payload.username).await {
         Ok(user) => {
             if !user.is_active {
-                messages.error(&format!("Incorrect username or password"));
-
+                messages.error("Incorrect username or password");
                 return Redirect::to("/login").into_response();
             }
 
             if let Ok(false) | Err(_) =
                 UserService::verify_password(&payload.password, &user.password)
             {
-                messages.error(&format!("Incorrect username or password"));
+                messages.error("Incorrect username or password");
                 return Redirect::to("/login").into_response();
             }
 
-            /* if !UserService::is_valid_otp(&payload.client_secret, &user.otp_base32.clone().unwrap())
-            {
-                messages.error(&format!("Incorrect username or password"));
-                return Redirect::to("/login").into_response();
-            } */
-
             let access_token = middlewares::gerar_token(&user.username);
-
-            // Busca os módulos usando o service
-            let json_data: String = match sqlx::query_as!(Module, r#"SELECT * FROM module"#)
-                .fetch_all(&*state.db)
-                .await
-            {
-                Ok(paginated_result) => {
-                    // Converte os módulos para JSON
-                    let modules: Vec<Value> = paginated_result
-                        .iter()
-                        .map(|m| {
-                            json!({
-                                "id": m.id,
-                                "title": m.title,
-                            })
-                        })
-                        .collect();
-
-                    json!(modules).to_string()
-                }
-                Err(err) => {
-                    debug!("Erro ao buscar módulos: {}", err);
-                    messages.error(&format!("Erro ao buscar módulos: {}", err));
-                    json!([]).to_string() // Array vazio em caso de erro
-                }
-            };
 
             // Configura os cookies
             let access_token_expire_minutes = env::var("ACCESS_TOKEN_EXPIRE_MINUTES")
@@ -306,23 +272,7 @@ async fn login(
             let expires_formatted = expires.format(&Rfc2822).unwrap();
 
             // Cria a resposta
-            //let mut response = Response::new(Body::empty());
             let mut response = Redirect::to("/").into_response();
-
-            // Adiciona os cookies
-            let modules_cookie = format!(
-                "modules={}; Max-Age={}; Path=/",
-                percent_encoding::percent_encode(
-                    json_data.as_bytes(),
-                    percent_encoding::NON_ALPHANUMERIC
-                ),
-                max_age.whole_seconds()
-            );
-
-            // Adiciona os cookies ao cabeçalho da resposta
-            response
-                .headers_mut()
-                .append(SET_COOKIE, HeaderValue::from_str(&modules_cookie).unwrap());
 
             // Cria o cookie de access_token
             let access_token_cookie = format!(
@@ -340,7 +290,7 @@ async fn login(
             response
         }
         Err(err) => {
-            messages.error(&format!("Senha não atualizada: {}", err));
+            messages.error(&format!("Login failed: {}", err));
             Redirect::to("/login").into_response()
         }
     }

@@ -11,8 +11,8 @@ pub struct AppState {
 
 #[derive(Debug, Deserialize)]
 pub struct LoginPayload {
-    username: String,
-    password: String,
+    pub username: String,
+    pub password: String,
     /* client_secret: String, */
 }
 

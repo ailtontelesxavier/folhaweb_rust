@@ -46,7 +46,7 @@ impl FolhaService {
         page: i32,
         page_size: i32,
     ) -> Result<PaginatedResponse<Folha>> {
-        Ok(self.repo.get_paginated(pool, find, page, page_size).await?)
+        Ok(self.repo.get_paginated(pool, find, page, page_size, None).await?)
     }
 }
 
@@ -82,7 +82,7 @@ impl UfService {
         page: i32,
         page_size: i32,
     ) -> Result<PaginatedResponse<Uf>> {
-        Ok(self.repo.get_paginated(pool, find, page, page_size).await?)
+        Ok(self.repo.get_paginated(pool, find, page, page_size, None).await?)
     }
 }
 
@@ -125,6 +125,6 @@ impl MunicipioService {
         page: i32,
         page_size: i32,
     ) -> Result<PaginatedResponse<Municipio>> {
-        Ok(self.repo.get_paginated(pool, find, page, page_size).await?)
+        Ok(self.repo.get_paginated(pool, find, page, page_size, None).await?)
     }
 }

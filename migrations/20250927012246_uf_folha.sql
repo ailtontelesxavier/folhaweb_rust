@@ -69,4 +69,21 @@ CREATE TABLE IF NOT EXISTS public.cadastro_folha
         DEFERRABLE INITIALLY DEFERRED
 );
 
+CREATE TABLE IF NOT EXISTS public.auth_user
+(
+    id integer NOT NULL DEFAULT nextval('auth_user_id_seq'::regclass),
+    password character varying(128) COLLATE pg_catalog."default" NOT NULL,
+    last_login timestamp with time zone NOT NULL,
+    is_superuser boolean NOT NULL,
+    username character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    first_name character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    last_name character varying(150) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(75) COLLATE pg_catalog."default" NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL,
+    CONSTRAINT auth_user_pkey PRIMARY KEY (id),
+    CONSTRAINT auth_user_username_key UNIQUE (username)
+);
+
 
