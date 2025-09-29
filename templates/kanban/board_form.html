@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Novo Quadro Kanban{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="flex items-center gap-4 mb-8">
+        <a href="/kanban/boards" class="btn btn-ghost btn-circle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+        </a>
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800">Novo Quadro Kanban</h1>
+            <p class="text-gray-600">Crie um novo quadro para organizar suas tarefas</p>
+        </div>
+    </div>
+
+    <!-- Flash Messages -->
+    {% include "parts/flash_message.html" %}
+
+    <!-- Form -->
+    <div class="max-w-2xl mx-auto">
+        <div class="card bg-white shadow-lg">
+            <div class="card-body">
+                <form method="POST" action="/kanban/boards/new" class="space-y-6">
+                    <!-- Título -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">Título do Quadro *</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            name="title" 
+                            placeholder="Ex: Projetos Pessoais, Trabalho, etc." 
+                            class="input input-bordered w-full"
+                            required
+                            maxlength="255"
+                        />
+                        <label class="label">
+                            <span class="label-text-alt">Máximo 255 caracteres</span>
+                        </label>
+                    </div>
+
+                    <!-- Descrição -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">Descrição</span>
+                        </label>
+                        <textarea 
+                            name="description" 
+                            placeholder="Descreva o objetivo deste quadro..."
+                            class="textarea textarea-bordered h-24 resize-none"
+                            maxlength="1000"
+                        ></textarea>
+                        <label class="label">
+                            <span class="label-text-alt">Máximo 1000 caracteres</span>
+                        </label>
+                    </div>
+
+                    <!-- Cor -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">Cor do Quadro</span>
+                        </label>
+                        <div class="flex gap-2 items-center">
+                            <input 
+                                type="color" 
+                                name="color" 
+                                value="#3B82F6"
+                                class="w-16 h-10 rounded border border-gray-300 cursor-pointer"
+                            />
+                            <span class="text-sm text-gray-600">Escolha uma cor para identificar este quadro</span>
+                        </div>
+                    </div>
+
+                    <!-- Botões -->
+                    <div class="flex gap-4 justify-end pt-4">
+                        <a href="/kanban/boards" class="btn btn-ghost">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            Criar Quadro
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Preview do Quadro -->
+        <div class="mt-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Prévia do Quadro</h3>
+            <div class="card bg-white shadow border-0">
+                <div class="card-body p-4">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div id="preview-color" class="w-5 h-5 rounded-full border-2 border-white shadow" style="background-color: #3B82F6;"></div>
+                        <h4 id="preview-title" class="font-bold text-gray-800">Título do Quadro</h4>
+                    </div>
+                    <p id="preview-description" class="text-gray-600 text-sm">Descrição do quadro aparecerá aqui...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Preview em tempo real
+document.addEventListener('DOMContentLoaded', function() {
+    const titleInput = document.querySelector('input[name="title"]');
+    const descriptionInput = document.querySelector('textarea[name="description"]');
+    const colorInput = document.querySelector('input[name="color"]');
+    
+    const previewTitle = document.getElementById('preview-title');
+    const previewDescription = document.getElementById('preview-description');
+    const previewColor = document.getElementById('preview-color');
+
+    titleInput?.addEventListener('input', function() {
+        previewTitle.textContent = this.value || 'Título do Quadro';
+    });
+
+    descriptionInput?.addEventListener('input', function() {
+        previewDescription.textContent = this.value || 'Descrição do quadro aparecerá aqui...';
+    });
+
+    colorInput?.addEventListener('change', function() {
+        previewColor.style.backgroundColor = this.value;
+    });
+});
+</script>
+{% endblock %}

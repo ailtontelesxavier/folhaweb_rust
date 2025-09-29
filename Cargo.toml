@@ -79,6 +79,9 @@ tower = "0.5.2"
 #schemars = "0.8"      # gera JSON Schema
 #utoipa = "4"          # gera OpenAPI/Swagger
 
+# Validação adicional
+lazy_static = "1.4"
+
 [dev-dependencies]
 # Testing dependencies
 anyhow = "1.0"

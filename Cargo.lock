@@ -1192,6 +1192,7 @@ dependencies = [
  "httpc-test",
  "image",
  "jsonwebtoken",
+ "lazy_static",
  "minijinja",
  "otpauth",
  "password-hash",

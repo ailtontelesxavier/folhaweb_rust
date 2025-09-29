@@ -2,6 +2,7 @@ mod cadastro;
 mod core;
 mod error;
 mod filters;
+mod kanban;
 mod middlewares;
 mod repository;
 mod state;
@@ -38,6 +39,7 @@ use crate::{
     cadastro::router as router_cadastro,
     core::UserService,
     filters::register_filters,
+    kanban::router as router_kanban,
     middlewares::handle_forbidden,
     state::{AppState, LoginPayload, SharedState},
 };
@@ -85,7 +87,8 @@ async fn main() {
     let rotas_privadas = Router::new()
         .route("/home", get(index))
         .route("/logout", get(logout))
-        .nest("/cadastro", router_cadastro());
+        .nest("/cadastro", router_cadastro())
+        .nest("/kanban", router_kanban());
     /* .layer(middleware::from_fn_with_state(
         state.clone(),
         middlewares::autenticar,
